@@ -6,7 +6,7 @@ import './Search.css'
 
 
 export default function Search(props) {
-    const queryParams = useSearchParams()
+    // const queryParams = useSearchParams()
     const [initialInput, setInitialInput] = useState('keyboard')
     // const initialInput = queryParams.get('word') ?? 'keyboard'
 
@@ -18,7 +18,7 @@ export default function Search(props) {
     useEffect(() => {
         setInput(initialInput)
         props.fetchData(initialInput)
-    },[initialInput, props])
+    },[initialInput])
 
     function handleChange(event) {
         setInput(event.target.value)

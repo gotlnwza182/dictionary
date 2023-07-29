@@ -10,12 +10,12 @@ export default function Navbar(props) {
   const [isDarkTheme, toggleTheme] = useToggle(false);
   const [isDropdownExpanded, toggleDropdown] = useToggle(false);
 
-  useEffect(() => {
-    const initialThemeColor = localStorage.getItem('theme-color');
-    if (initialThemeColor) {
-      toggleTheme(initialThemeColor === 'dark');
-    }
-  }, []);
+//   useEffect(() => {
+//     const initialThemeColor = localStorage.getItem('theme-color');
+//     if (initialThemeColor) {
+//       toggleTheme(initialThemeColor === 'dark');
+//     }
+//   }, []);
 
   useEffect(() => {
     document.documentElement.className = isDarkTheme ? 'dark' : '';
