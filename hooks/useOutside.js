@@ -1,3 +1,4 @@
+'use client'
 import { useEffect  } from "react";
 
 export default function useOutside(ref, is, setIs) {
