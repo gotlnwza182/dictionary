@@ -1,0 +1,61 @@
+main { 
+    margin: 2.75rem auto 0 auto;
+}
+.word-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.word h1 {
+    font-size: var(--fs-700);
+}
+.word p {
+    color: var(--purple);
+    font-size: var(--fs-600);
+    margin-top: .5rem;
+}
+
+.source {
+    display: flex;
+    margin-top: 1.25rem;
+}
+.source p {
+    color: var(--gray);
+    margin-right: 1.125rem;
+}
+.external-link a {
+    margin-right: .625rem;
+    color: var(--very-dark-gray);
+}
+.btn-play-audio {
+    border: none;
+    border-radius: 5rem;
+    background-color: transparent;
+    cursor: pointer;
+    width: 4.6875rem;
+    height: 4.6875rem;
+}
+
+.btn-play-audio svg:hover circle{
+    opacity: 1;
+}
+.btn-play-audio svg:hover path{
+    fill: white;
+}
+
+@media only screen and (min-width: 100px) {
+    main {
+        width: 20.5rem;
+    }
+}
+@media only screen and (min-width: 768px) {
+    main {
+        width: 43rem;
+    }
+}
+@media only screen and (min-width: 1200px) {
+    main {
+        width: 46rem;
+    }
+}
+

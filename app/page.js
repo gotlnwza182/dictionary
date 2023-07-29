@@ -1,95 +1,52 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+'use client'
 
-export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+import React, { useEffect, useState } from 'react'
+import Navbar from '@/components/Navbar'
+import Search from '@/components/Search'
+import Word from '@/components/Word'
+import useFetch from '@/hooks/useFetch'
+import fontNames from '@/utils/font-names'
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+export default function page() {
+  const [currentFont, setCurrentFont] = useState(localStorage.getItem('current-font') ?? 'Serif')
+  const [word, setWord] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const [isError, setIsError] = useState(false)
+  
+  const fontClass = fontNames[currentFont]
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+  useEffect(() => {
+    localStorage.setItem('current-font', currentFont)
+  }, [currentFont])
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
+  async function fetchData(input) {
+    useFetch (
+      `https://api.dictionaryapi.dev/api/v2/entries/en/${input}`,
+      data => {
+        setWord(data[0])
+      },
+      setIsLoading,
+      setIsError
+    )
+  }
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+  const errorElement = (
+    <main className='error-container'>
+      <div>😕</div>
+      <h5>No Definitions Found</h5>
+      <p>
+        Sorry pal, we couldn't find definitions for the word you were looking for. You can try the search again at later
+        time or head to the web instead.
+      </p>
     </main>
+  )
+
+  return (
+    <div className={`${fontClass}`}>
+      <Navbar currentFont={currentFont} applyFont={setCurrentFont} fontClass={fontClass} />
+      <Search fetchData={fetchData}/>
+      {isError && errorElement}
+      {!isLoading && !isError && <Word data={word} isError={isError}/>}
+    </div>
   )
 }

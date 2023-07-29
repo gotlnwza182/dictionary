@@ -1,0 +1,30 @@
+.dropdown {
+    position: relative;
+}
+.dropdown-menu {
+    list-style: none;
+    position: absolute;
+    background-color: var(--white);
+    top: 28px;
+    right: 0px;
+    width: 10.125rem;
+    height: 9.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 1rem;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.1);
+}
+
+
+.font-select {
+    width: 7.5rem;
+    height: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: var(--fs-400);
+}
