@@ -39,7 +39,7 @@ export default function Search(props) {
         <form onSubmit={handleSubmit}>
             <div className={`search-bar ${invalidClass}`}>
                 <input  placeholder='Search for any word...' value={input} onChange={handleChange}></input>
-                {!isValid && <div className='input-null'>Whoops, can't be empty...</div>}
+                {!isValid && <div className='input-null'>Whoops, can&apos;t be empty...</div>}
             </div>
         </form>
     )

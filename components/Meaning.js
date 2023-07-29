@@ -7,7 +7,7 @@ export default function Meaning({ meaning }) {
     const definitions = meaning.definitions.map((definition, index) => (
         <li className='meaning-list' key={index}>
             <p className='meaning-color'>{definition.definition}</p>
-            {definition.example && <p className='example'>"{definition.example}"</p>}
+            {definition.example && <p className='example'>&quot;{definition.example}&quot;</p>}
         </li>
     ))
 
