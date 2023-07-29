@@ -18,7 +18,7 @@ export default function Search(props) {
     useEffect(() => {
         setInput(initialInput)
         props.fetchData(initialInput)
-    },[initialInput])
+    },[initialInput, props])
 
     function handleChange(event) {
         setInput(event.target.value)

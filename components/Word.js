@@ -10,7 +10,7 @@ export default function Word({ data }) {
 
   useEffect(() => {
     audioRef.current = new Audio(validPhonetics?.audio)
-  }, [data])
+  })
 
   function playAudio() {
     audioRef.current.play()
