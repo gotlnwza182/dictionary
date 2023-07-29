@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useEffect } from 'react'
 import './Navbar.css'
 import Dropdown from './Dropdown'
